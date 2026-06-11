@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic html page</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+<body> 
+    <hr>
+    <header class="header-container">
+        <img src="./download (8).jpg" alt="logo" width="50px" height="50px">
+        <h1>website development tutorial</h1>
+    </header>
+    <main>
+        <hr>
+        <p>Website development (or web development) is the process of building, creating, and maintaining websites. It
+            covers everything from a simple, single page of plain text to complex web applications, e-commerce stores,
+            and
+            social network services.
+            It is generally broken down into three main pillars:</p>
+
+
+        <ol type="1">
+            <li>
+                Front-End Development (Client-Side): Everything a user sees and interacts with directly on their screen.
+                It
+                is built using languages like HTML (structure), CSS (design/layout), and JavaScript (interactivity).
+            </li>
+            <li>
+                Back-End Development (Server-Side): The behind-the-scenes engine that powers the website. It manages
+                databases, user authentication, and server logic using languages like Python, PHP, Ruby, or Node.js.
+            </li>
+            <li>
+                Full-Stack Development: A combination of both front-end and back-end development.
+            </li>
+        </ol>
+        <hr>
+        <section id="media-content" class="media-section">
+            <h2>Youtube tutorial</h2>
+            <p>Check out this helpful web development tutorial directly from YouTube:</p>
+
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/HcOc7P5BMi4?si=Ge6D2qCQblLCknKb"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div>
+                <h3>Audio</h3>
+                <audio controls>
+                    <source src="./iphone-13-30-00-62001.mp3" type="audio/mpeg">
+
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </section>
+        <hr>
+
+        <table>
+            <tr>
+                <th>Features</th>
+                <th>web dev</th>
+                <th>App dev</th>
+            </tr>
+            <tr>
+                <td>Installation</td>
+                <td>No installation required. Accessed instantly via a web browser (e.g., Chrome, Safari) using a URL.
+                </td>
+                <td>Must be downloaded and installed from an app store (e.g., Google Play Store, Apple App Store).</td>
+            </tr>
+            <tr>
+                <td>Development & Code</td>
+                <td>Built using web technologies (HTML, CSS, JavaScript, React). One codebase works across all device
+                    types.
+                </td>
+                <td>Built using platform-specific languages (Swift for iOS, Kotlin for Android) or cross-platform
+                    frameworks
+                    (Flutter, React Native).</td>
+            </tr>
+            <tr>
+                <td>Device Feature Access</td>
+                <td>Limited access to hardware features, though modern browsers can access camera and location with
+                    permission.
+                </td>
+                <td>Deep integration with device hardware, including push notifications, GPS, camera, contacts, and
+                    biometric login.</td>
+            </tr>
+        </table>
+        <hr>
+        <form action="./php">
+            <h3>contact us</h3>
+            <label for="username">Enter your Name:</label><br>
+            <input type="text" id="username" name="username" placeholder="Nisha" required><br>
+            <label for="email">Enter your Email:</label><br>
+            <input type="text" id="email" name="Email" placeholder="example@gmail.com" required><br>
+            <label for="phone">Enter your Number:</label><br>
+            <input type="number" id="phone" name="phone" placeholder="+92xxxxxxxxxxxx" required><br>
+
+            <input type="submit" value="Submit">
+        </form>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Web Development Tutorial. All rights reserved.</p>
+    </footer>
+
+
+</body>
+
+</html>
