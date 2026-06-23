@@ -1,0 +1,317 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #f2f5fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    padding: 2rem;
+}
+
+.table-card {
+    background: white;
+    padding: 2rem 2rem 1.5rem 2rem;
+    border-radius: 28px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    max-width: 750px;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+th {
+    background: #5872b9;
+    color: white;
+    font-weight: 600;
+    padding: 14px 18px;
+    text-align: left;
+    letter-spacing: 0.3px;
+}
+
+td {
+    padding: 12px 18px;
+    border-bottom: 1px solid #e9edf4;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background: #f8faff;
+}
+
+.marks-avg {
+    font-weight: 500;
+    background: #f0f4fe;
+}
+
+.note {
+    margin-top: 1.2rem;
+    font-size: 0.8rem;
+    color: #5b6f8e;
+    text-align: center;
+    border-top: 1px dashed #dce3ef;
+    padding-top: 1rem;
+}
+
+.form-container {
+    background: white;
+    padding: 2.5rem 2.8rem 2.8rem 2.8rem;
+    border-radius: 28px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    max-width: 780px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.form-container h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #0b1a33;
+    margin: 0 0 0.3rem 0;
+    letter-spacing: -0.3px;
+}
+
+.form-container label {
+    font-weight: 500;
+    color: #1f2a44;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-top: 0.8rem;
+    margin-bottom: 0.25rem;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="number"],
+.form-container select {
+    padding: 10px 14px;
+    border: 1px solid #ccd5e3;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    background: white;
+    transition: 0.2s;
+    width: 100%;
+    max-width: 280px;
+    margin: 2px 4px 4px 0;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="email"]:focus,
+.form-container input[type="number"]:focus,
+.form-container select:focus {
+    border-color: #1e2b4f;
+    outline: 2px solid #d0d9f0;
+    outline-offset: 2px;
+}
+
+.form-container input::placeholder {
+    color: #a8b7d0;
+    font-size: 0.85rem;
+}
+
+.form-container .name-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 2px;
+}
+
+.form-container .name-group input {
+    flex: 1;
+    max-width: 200px;
+}
+
+.form-container .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem 2rem;
+    background: #f8faff;
+    padding: 10px 16px;
+    border-radius: 16px;
+    border: 1px solid #e3eaf5;
+    margin-top: 2px;
+}
+
+.form-container .radio-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #1f2a44;
+    margin: 0;
+    cursor: pointer;
+}
+
+.form-container .radio-group input[type="radio"] {
+    width: 17px;
+    height: 17px;
+    accent-color: #1e2b4f;
+    margin: 0;
+    cursor: pointer;
+}
+
+.form-container select[multiple] {
+    height: auto;
+    min-height: 90px;
+    padding: 6px 8px;
+    border-radius: 14px;
+    max-width: 320px;
+    width: 100%;
+    background: #fafcff;
+}
+
+.form-container select[multiple] option {
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.form-container select[multiple] option:checked {
+    background: #d0d9f0;
+    color: #0b1a33;
+    font-weight: 500;
+}
+
+.form-container .address-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1.2rem;
+    background: #fafcff;
+    padding: 0.8rem 1rem 0.6rem 1rem;
+    border-radius: 18px;
+    border: 1px solid #e9eff8;
+    margin-top: 2px;
+}
+
+.form-container .address-group input {
+    max-width: 100%;
+}
+
+.form-container select:not([multiple]) {
+    max-width: 280px;
+    width: 100%;
+    cursor: pointer;
+    appearance: auto;
+}
+
+.form-container input[type="email"] {
+    max-width: 320px;
+    width: 100%;
+}
+
+.form-container .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.6rem;
+    background: #f8faff;
+    padding: 10px 16px;
+    border-radius: 16px;
+    border: 1px solid #e3eaf5;
+    margin-top: 2px;
+}
+
+.form-container .checkbox-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #1f2a44;
+    margin: 0;
+    cursor: pointer;
+}
+
+.form-container .checkbox-group input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: #1e2b4f;
+    margin: 0;
+    cursor: pointer;
+}
+
+.form-container .btn-send {
+    background: #1e2b4f;
+    color: white;
+    border: none;
+    padding: 11px 48px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 10px rgba(30, 43, 79, 0.15);
+    margin-top: 1.2rem;
+    display: inline-block;
+}
+
+.form-container .btn-send:hover {
+    background: #14213d;
+    transform: scale(0.97);
+}
+
+.form-container .btn-send:active {
+    transform: scale(0.94);
+}
+
+.form-container .hint {
+    color: #6a7b9c;
+    font-size: 0.7rem;
+    padding-left: 4px;
+    display: block;
+    margin-top: 0px;
+}
+
+@media (max-width: 700px) {
+    .form-container {
+        padding: 1.8rem 1.2rem;
+    }
+
+    .form-container .name-group {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .form-container .name-group input {
+        max-width: 100%;
+    }
+
+    .form-container .address-group {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+        padding: 0.6rem 0.8rem 0.3rem 0.8rem;
+    }
+
+    .form-container .radio-group,
+    .form-container .checkbox-group {
+        flex-direction: column;
+        gap: 0.3rem;
+        padding: 10px 14px;
+    }
+
+    .form-container .btn-send {
+        width: 100%;
+        text-align: center;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="email"],
+    .form-container input[type="number"],
+    .form-container select {
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML tasks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <!-- TABLE -->
+        <div class="tb-stu">
+            <table>
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>SUBJECT</th>
+                        <th>MARKS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2">Hillary</td>
+                        <td>Advanced Web</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td>Operating System</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Lary</td>
+                        <td>Advanced Web</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td>Operating System</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: right; font-weight: 600; background: #f7faff;">Total Average:
+                        </td>
+                        <td style="font-weight: 600; background: #f7faff;">72.5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- FORM -->
+        <div class="form-container">
+            <form action="./php">
+                <h1>Student Information Form</h1>
+                <label>Your Name</label>
+                <br>
+                <input type="text" placeholder="First name">
+                <input type="text" placeholder="Last name">
+                <br>
+                <label for="lev">Level</label>
+                <br>
+                <label><input type="radio" name="lev">Hi School</label>
+                <label><input type="radio" name="lev">College</label>
+                <label><input type="radio" name="lev">University</label>
+                <br>
+                <label>Major</label>
+                <select multiple size="4">
+                    <option value="cs" selected>Computer Science</option>
+                    <option value="datascience">Data Sciences</option>
+                    <option value="datastructure">Data Structure</option>
+                    <option value="networking">Networking</option>
+                    <option value="ai">Artificial Intelligence</option>
+                    <option value="cyber">Cybersecurity</option>
+                </select>
+                <br>
+                <label>Address</label>
+                <br>
+                <input type="text" placeholder="Street Adress">
+                <input type="text" placeholder="City">
+                <input type="text" placeholder="Region">
+                <input type="text" placeholder="postal/zip">
+                <select >
+                    <option value="ru">Russia</option>
+                    <option value="de" selected>Germany</option>
+                    <option value="fr">France</option>
+                    <option value="am">Armenia</option>
+                    <option value="us">USA</option>
+                </select>
+                <br>
+                <label for="email">Email</label>
+                <br>
+                <input type="text" class="email" placeholder="">
+                <br>
+                <label>Prefered method for contact</label>
+                <label><input type="checkbox" value="email" checked /> Email</label>
+                <label><input type="checkbox" value="phone" checked /> Phone</label>
+                <label><input type="checkbox" value="sms" /> SMS</label>
+                <label><input type="checkbox" value="whatsapp" /> WhatsApp</label>
+                <label><input type="checkbox" value="telegram" /> Telegram</label>
+                <br>
+                <button>Send</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
