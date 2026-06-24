@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complex Layout Assignment</title>
+  <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+  <div class="site-wrapper">
+    <header class="main-header">
+      <div class="logo">Dev</div>
+      <nav class="nav-links">
+        <a href="#home" class="active">Home</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#projects">Projects</a>
+        <a href="#settings">Settings</a>
+      </nav>
+      <button class="btn-cta">Sign Out</button>
+    </header>
+
+    <aside class="sidebar">
+      <div class="user-profile">
+        <div class="avatar"></div>
+        <div class="user-info">
+          <h3>Nisha Ali</h3>
+          <p>Full-Stack Developer</p>
+        </div>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#">Overview</a></li>
+        <li><a href="#">Analytics</a></li>
+        <li><a href="#">Automation Tools</a></li>
+        <li><a href="#">Team Settings</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <header class="content-header">
+        <h1>Project Dashboard</h1>
+        <p>A multi-dimensional view built combining Grid & Flexbox layouts.</p>
+      </header>
+
+      <section class="card-grid">
+        
+        <article class="card">
+          <div class="card-body">
+            <span class="badge badge-purple">Feature</span>
+            <h2 class="card-title">CSS Grid</h2>
+            <p class="card-text">The Grid Layout Module offers a grid-based layout system, with rows and columns.
+               The Grid Layout Module allows developers to easily create complex web layouts.
+                The Grid Layout Module makes it easy to design a responsive layout structure, without using float or positioning.</p>
+            </div>
+          <div class="card-footer">
+            <button class="btn-card">Launch Tool</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="badge badge-blue">Analytics</span>
+            <h2 class="card-title">CSS Grid Container</h2>
+            <p class="card-text">A grid container contains one or more grid items arranged in columns and rows.
+                      All direct child elements of a grid container automatically become grid items.
+                     An element becomes a grid container when its display property is set to grid or inline-grid.</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn-card">View Data</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="badge badge-green">Core System</span>
+            <h2 class="card-title">Layout Framework</h2>
+            <p class="card-text">Leverage two-dimensional Grid structures for layout architectures paired beautifully with Flexbox component alignment.</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn-card">Read Specs</button>
+          </div>
+        </article>
+
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <p>&copy; 2026 Complex Layout Assignment. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

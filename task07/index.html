@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complex Layout · Grid + Flexbox</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+  <div class="grid-master">
+    <!-- HEADER (flex) -->
+    <header class="header">
+      <h1>layout·lab</h1>
+      <nav class="header-nav">
+        <a href="#">Grid</a>
+        <a href="#">Flex</a>
+        <a href="#">Areas</a>
+        <a href="#">Spans</a>
+      </nav>
+      <div class="header-actions">
+        <span class="btn-outline">home</span>
+        <span class="btn-outline">sign in</span>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT (flex column + inner grid) -->
+    <main class="main-content">
+      <!-- feature: flex column -->
+      <section class="feature-card">
+        <h2>Complex grid · flex synergy</h2>
+        <p>Header uses flex, main uses flex + nested grid, sidebar is flex column, footer uses flex + grid child. All responsive.</p>
+        <div class="feature-tag">
+          <span>grid-template-areas</span>
+          <span>flex-wrap</span>
+          <span>auto-fit</span>
+        </div>
+      </section>
+
+      <!-- article grid: 2 columns (grid) -->
+      <div class="article-grid">
+        <article class="article-card">
+          <h3>Grid lines & spans</h3>
+          <p>Using <code>grid-column: 1 / 3</code> and <code>grid-row: span 2</code> to create magazine-style layouts.</p>
+          <div class="article-meta">
+            <span class="badge">advanced</span>
+            <span>4 min read</span>
+          </div>
+        </article>
+        <article class="article-card">
+          <h3>Flex + Grid hybrid</h3>
+          <p>Sidebar uses flex column with nested grid for stats. Main uses flex column with grid articles.</p>
+          <div class="article-meta">
+            <span class="badge">combo</span>
+            <span>6 min read</span>
+          </div>
+        </article>
+        <article class="article-card">
+          <h3>Responsive areas</h3>
+          <p>Grid template areas shift on breakpoints: header, main, sidebar, footer — stack on smaller screens.</p>
+          <div class="article-meta">
+            <span class="badge">mobile-first</span>
+            <span>3 min read</span>
+          </div>
+        </article>
+        <article class="article-card">
+          <h3>Advanced flex</h3>
+          <p>Header nav uses flex: gap, wrap, and align-items. Footer uses flex with distributed links.</p>
+          <div class="article-meta">
+            <span class="badge">flexbox</span>
+            <span>5 min read</span>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <!-- SIDEBAR (flex column + nested grid) -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <h4>📌 trending topics</h4>
+        <div class="sidebar-item">
+          <div class="icon">G</div>
+          <div class="info"><strong>Grid areas</strong><small>12 articles</small></div>
+        </div>
+        <div class="sidebar-item">
+          <div class="icon">F</div>
+          <div class="info"><strong>Flexbox</strong><small>8 articles</small></div>
+        </div>
+        <div class="sidebar-item">
+          <div class="icon">⧉</div>
+          <div class="info"><strong>Hybrid layouts</strong><small>5 articles</small></div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h4>📊 stats (nested grid)</h4>
+        <div class="sidebar-stats">
+          <div class="stat-box"><strong>24</strong>grid items</div>
+          <div class="stat-box"><strong>16</strong>flex items</div>
+          <div class="stat-box"><strong>4</strong>areas</div>
+          <div class="stat-box"><strong>3</strong>breakpoints</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section" style="margin-top:0.2rem;">
+        <h4>⚡ quick links</h4>
+        <div style="display:flex; flex-direction:column; gap:0.4rem;">
+          <span style="background:white; padding:0.4rem 1rem; border-radius:30px; border:1px solid #d3e2f0;">CSS Tricks Grid</span>
+          <span style="background:white; padding:0.4rem 1rem; border-radius:30px; border:1px solid #d3e2f0;">MDN Flexbox</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- FOOTER (flex) -->
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Grid guide</a>
+        <a href="#">Flex guide</a>
+        <a href="#">Contact</a>
+      </div>
+     
+      <div style="font-size:0.8rem; opacity:0.7;">
+        &copy; 2026 · layout lab
+      </div>
+    </footer>
+
+  </div> <!-- end grid-master -->
+</div> <!-- end page -->
+</body>
+</html>
