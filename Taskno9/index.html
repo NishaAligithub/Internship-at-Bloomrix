@@ -1,0 +1,73 @@
+<!-- Refactor CSS with SASS -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Layout with Form Overlay</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo-container">
+            <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=150&auto=format&fit=crop" alt="Logo">
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#">Men</a></li>
+            <li class="nav-item"><a href="#">Women</a></li>
+            <li class="nav-item"><a href="#">Kids</a></li>
+            <li class="nav-item"><a href="#">Toys</a></li>
+            <li class="nav-item">
+                <a href="#">Electronics</a>
+                <ul class="submenu">
+                    <li><a href="#">TV</a></li>
+                    <li><a href="#">Mobiles</a></li>
+                    <li><a href="#">Computers</a></li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+
+    <div class="main-wrapper">
+         <main class="grid-container">
+            <div class="box box-coral"></div>
+            <div class="box box-lime"></div>
+            <div class="box box-yellow"></div>
+            
+            <div class="box box-maroon"></div>
+            <div class="box box-coral"></div>
+            <div class="box box-coral"></div>
+            
+            <div class="box box-lime"></div>
+            <div class="box box-yellow"></div>
+            <div class="box box-maroon"></div>
+        </main>
+
+        <section class="form-overlay">
+            <h2>Sign up today</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm password:</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <button type="submit" class="register-btn">Register</button>
+            </form>
+        </section>
+
+    </div>
+
+</body>
+</html>

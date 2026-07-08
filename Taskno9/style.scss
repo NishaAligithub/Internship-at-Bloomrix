@@ -1,0 +1,211 @@
+// ==========================================
+// 1. VARIABLES
+// ==========================================
+// Theme Colors
+$color-bg: #fcfbf4;
+$color-navbar-bg: #ffffff;
+$color-text-dark: #111111;
+$color-text-muted: #7a7a7a;
+$color-text-sub: #1a1a1a;
+$color-border: #ccc;
+
+// Grid Box Colors
+$color-coral: #3bcb64;
+$color-lime: #9c2b2b;
+$color-yellow: #5b83c0;
+$color-maroon: #922b4e;
+
+// Interactive Colors
+$color-submenu-bg: #ababab;
+$color-overlay-bg: rgba(235, 222, 206, 0.9);
+$color-success: #28a745;
+$color-btn-primary: #11a94b;
+$color-btn-hover: #0e8f3e;
+
+// ==========================================
+// 2. MIXINS
+// ==========================================
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// ==========================================
+// 3. BASE STYLES
+// ==========================================
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: $color-bg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+// ==========================================
+// 4. NAVBAR COMPONENT
+// ==========================================
+.navbar {
+  width: 100%;
+  background-color: $color-navbar-bg;
+  display: flex;
+  align-items: center;
+  padding: 10px 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  .logo-container img {
+    height: 50px;
+    display: block;
+  }
+
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    margin-left: 30px;
+  }
+
+  .nav-item {
+    position: relative;
+    padding: 15px 20px;
+
+    a {
+      text-decoration: none;
+      color: $color-text-muted;
+      font-size: 1.2rem;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #333;
+      }
+    }
+
+    // Submenu nesting & interaction
+    &:hover .submenu {
+      display: block;
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: $color-submenu-bg;
+      list-style: none;
+      min-width: 180px;
+      padding: 10px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      li {
+        padding: 10px 20px;
+
+        a {
+          color: $color-text-sub;
+          font-size: 1.1rem;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// ==========================================
+// 5. MAIN LAYOUT & GRID
+// ==========================================
+.main-wrapper {
+  margin-top: 100px; // Space for fixed header
+  margin-bottom: 50px;
+  position: relative; // Context for absolute form positioning
+  width: 800px;
+  max-width: 95%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 20px;
+}
+
+.box {
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+
+  &-coral { background-color: $color-coral; }
+  &-lime { background-color: $color-lime; }
+  &-yellow { background-color: $color-yellow; }
+  &-maroon { background-color: $color-maroon; }
+}
+
+// ==========================================
+// 6. FORM OVERLAY COMPONENT
+// ==========================================
+.form-overlay {
+  @include absolute-center;
+  width: 420px;
+  max-width: 90%;
+  background-color: $color-overlay-bg;
+  border-radius: 8px;
+  padding: 30px 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+
+  h2 {
+    font-size: 2rem;
+    color: $color-text-dark;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+
+    label {
+      display: block;
+      font-size: 1rem;
+      color: #333333;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 1rem;
+      border: 1px solid $color-border;
+      border-radius: 6px;
+      background-color: #ffffff;
+      outline: none;
+
+      &:focus {
+        border-color: $color-success;
+      }
+    }
+  }
+
+  .register-btn {
+    background-color: $color-btn-primary;
+    color: #ffffff;
+    border: none;
+    padding: 10px 22px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+
+    &:hover {
+      background-color: $color-btn-hover;
+    }
+  }
+}
