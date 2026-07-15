@@ -1,0 +1,212 @@
+/* ----- reset & base ----- */
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    user-select: none;
+}
+
+body {
+    background: #f0f2f5;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----- main card (like the image style) ----- */
+.calculator {
+    background: #ffffff;
+    width: 340px;
+    padding: 28px 20px 30px;
+    border-radius: 36px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12), 0 6px 16px rgba(0, 0, 0, 0.04);
+    transition: all 0.15s ease;
+    text-align: center;
+}
+
+/* header / title (subtle) */
+.calc-title {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    color: #1e293b;
+    margin: 0 0 10px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e9edf2;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.calc-title small {
+    font-size: 13px;
+    font-weight: 400;
+    color: #6b7a8f;
+    letter-spacing: 0.2px;
+}
+
+/* ----- display area (like the image "0" at top) ----- */
+.display {
+    background: #f8fafc;
+    border-radius: 28px;
+    padding: 12px 22px;
+    margin: 6px 0 18px 0;
+    text-align: right;
+    font-size: 38px;
+    font-weight: 500;
+    color: #0b1a2b;
+    letter-spacing: 0.5px;
+    border: 1px solid #e2e8f0;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.02);
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    word-break: break-all;
+    line-height: 1.2;
+}
+
+.display span {
+    opacity: 0.9;
+}
+
+/* ----- grid buttons (like image layout) ----- */
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 16px 0 10px;
+}
+
+/* base button style */
+.btn {
+    background: #f1f4f9;
+    border: none;
+    border-radius: 40px;
+    padding: 18px 0;
+    font-size: 24px;
+    font-weight: 500;
+    color: #1e293b;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    transition: all 0.12s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    border: 1px solid transparent;
+}
+
+.btn:active {
+    transform: scale(0.94);
+    background: #e2e8f0;
+}
+
+/* operator buttons (right column) */
+.btn-operator {
+    background: #eef2f6;
+    color: #1e3a6b;
+    font-weight: 600;
+}
+
+.btn-operator:active {
+    background: #d5dee9;
+}
+
+/* clear button (DEL) */
+.btn-clear {
+    background: #f1f4f9;
+    color: #b91c1c;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.btn-clear:active {
+    background: #fad5d5;
+}
+
+/* equals button (wide / accent) – but we keep it grid */
+.btn-equals {
+    background: #1e3a6b;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 6px 12px rgba(26, 67, 113, 0.18);
+}
+
+.btn-equals:active {
+    background: #143157;
+    transform: scale(0.94);
+}
+
+/* zero button (span 2 cols) – as seen in image */
+.btn-zero {
+    grid-column: span 2;
+}
+
+/* extra small text for operators */
+.btn-operator span {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+/* "visit site" / footer like in the image */
+.footer-note {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    color: #3b4a5e;
+    letter-spacing: 0.2px;
+    gap: 6px;
+    border-top: 1px solid #e9edf2;
+    padding-top: 16px;
+}
+
+.footer-note a {
+    color: #1e3a6b;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 50px;
+    transition: background 0.1s;
+}
+
+.footer-note a:hover {
+    background: #e9edf4;
+}
+
+.footer-note i {
+    font-style: normal;
+    font-size: 18px;
+    margin-right: 4px;
+}
+
+/* small badge like "imularity" (just stylistic) */
+.brand-tag {
+    font-size: 13px;
+    background: #eef2f6;
+    padding: 2px 12px;
+    border-radius: 40px;
+    color: #2c3e5c;
+    font-weight: 450;
+}
+
+/* ----- responsive ----- */
+@media (max-width: 420px) {
+    .calculator {
+        width: 96%;
+        padding: 22px 12px;
+    }
+
+    .btn {
+        font-size: 22px;
+        padding: 16px 0;
+    }
+
+    .display {
+        font-size: 32px;
+        padding: 10px 16px;
+    }
+}
