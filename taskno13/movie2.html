@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie List </title>
+  <style>
+    /* ----- modern, clean design (your requested theme) ----- */
+    :root {
+      --primary: #4f46e5;
+      --danger: #ef4444;
+      --background: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      max-width: 640px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      min-height: 100vh;
+      display: block; 
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary);
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin-bottom: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    h1 span {
+      background: var(--primary);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.1rem 0.9rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ----- form (movie input) ----- */
+    form {
+      background: var(--card-bg);
+      padding: 1.5rem 1.5rem 1.8rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e9edf2;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #475569;
+      letter-spacing: 0.2px;
+    }
+
+    input {
+      padding: 0.6rem 0.8rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: white;
+      transition: 0.2s;
+      width: 100%;
+    }
+    input:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-color: transparent;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .form-row .form-group {
+      flex: 1 0 140px;
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.15s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    button:hover {
+      opacity: 0.9;
+      transform: scale(0.99);
+    }
+    button:active {
+      transform: scale(0.97);
+    }
+
+    .add-btn {
+      background: var(--primary);
+      margin-top: 0.2rem;
+    }
+
+    /* ----- stats bar ----- */
+    .stats-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-bg);
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 0.03);
+      border: 1px solid #e2e8f0;
+      margin-bottom: 1.8rem;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+    .stats-bar strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .stats-badge {
+      background: #eef2ff;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      color: var(--primary);
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+
+    /* ----- movie list ----- */
+    .movie-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 1.5rem;
+      max-height: 420px;
+      overflow-y: auto;
+      padding-right: 0.2rem;
+    }
+    .movie-list::-webkit-scrollbar {
+      width: 5px;
+    }
+    .movie-list::-webkit-scrollbar-track {
+      background: #e9edf2;
+      border-radius: 12px;
+    }
+    .movie-list::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 12px;
+    }
+
+    .movie-card {
+      background: var(--card-bg);
+      padding: 0.9rem 1.2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.04);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #edf1f7;
+      transition: 0.1s ease;
+    }
+    .movie-card:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 10px rgb(0 0 0 / 0.04);
+    }
+
+    .movie-info h3 {
+      margin: 0 0 0.2rem 0;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .movie-info p {
+      margin: 0;
+      color: #64748b;
+      font-size: 0.85rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.9rem;
+    }
+    .movie-info p span {
+      background: #f1f5f9;
+      padding: 0.1rem 0.7rem;
+      border-radius: 40px;
+      color: #334155;
+    }
+
+    .delete-btn {
+      background: var(--danger);
+      padding: 0.4rem 0.9rem;
+      font-size: 0.8rem;
+      border-radius: 40px;
+      font-weight: 500;
+      min-width: 60px;
+    }
+
+    .empty-message {
+      text-align: center;
+      color: #94a3b8;
+      padding: 2.5rem 0;
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1px dashed #d1d9e6;
+      font-style: italic;
+    }
+
+    /* ----- footer actions (sort / clear) ----- */
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.7rem;
+      margin-top: 0.2rem;
+    }
+    .footer-actions button {
+      background: transparent;
+      border: 1px solid #d1d9e6;
+      color: #334155;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.12s;
+      background: white;
+    }
+    .footer-actions button:hover {
+      background: #f1f5f9;
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .footer-actions .clear-btn:hover {
+      border-color: var(--danger);
+      color: var(--danger);
+      background: #fef2f2;
+    }
+
+    .stats {
+      text-align: center;
+      font-weight: 500;
+      margin-top: 1.2rem;
+      color: #475569;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>
+    🎞️ Movie Vault
+    <span>JS</span>
+  </h1>
+
+  <!-- INPUT FORM (clean design) -->
+  <form id="movieForm">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="titleInput">Title</label>
+        <input type="text" id="titleInput" placeholder="e.g. Inception" value="Inception" />
+      </div>
+      <div class="form-group">
+        <label for="directorInput">Director</label>
+        <input type="text" id="directorInput" placeholder="e.g. Nolan" value="Nolan" />
+      </div>
+      <div class="form-group">
+        <label for="yearInput">Year</label>
+        <input type="number" id="yearInput" placeholder="e.g. 2010" value="2010" min="1888" max="2030" />
+      </div>
+    </div>
+    <button type="submit" class="add-btn">➕ Add movie</button>
+  </form>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <span>🎯 <strong id="movieCount">0</strong> movies</span>
+    <span class="stats-badge" id="latestMovie">✨ ready</span>
+  </div>
+
+  <!-- MOVIE LIST -->
+  <div class="movie-list" id="movieListContainer">
+    <div class="empty-message">🎬 No movies yet — add your favourites</div>
+  </div>
+
+  <!-- FOOTER ACTIONS -->
+  <div class="footer-actions">
+    <button id="sortByYearBtn">📅 Sort by year</button>
+    <button id="clearAllBtn" class="clear-btn">🗑️ Clear all</button>
+  </div>
+
+  <div class="stats" id="extraStats"></div>
+
+  <script>
+    (function() {
+      "use strict";
+
+      // ---------- state ----------
+      let movies = [];
+
+      // DOM refs
+      const form = document.getElementById('movieForm');
+      const titleInput = document.getElementById('titleInput');
+      const directorInput = document.getElementById('directorInput');
+      const yearInput = document.getElementById('yearInput');
+      const movieListContainer = document.getElementById('movieListContainer');
+      const movieCountSpan = document.getElementById('movieCount');
+      const latestMovieSpan = document.getElementById('latestMovie');
+      const sortByYearBtn = document.getElementById('sortByYearBtn');
+      const clearAllBtn = document.getElementById('clearAllBtn');
+      const extraStats = document.getElementById('extraStats');
+
+      // ---------- render ----------
+      function renderMovieList() {
+        movieListContainer.innerHTML = '';
+
+        if (movies.length === 0) {
+          const emptyDiv = document.createElement('div');
+          emptyDiv.className = 'empty-message';
+          emptyDiv.textContent = '🎬 No movies yet — add your favourites';
+          movieListContainer.appendChild(emptyDiv);
+        } else {
+          movies.forEach((movie, index) => {
+            const card = document.createElement('div');
+            card.className = 'movie-card';
+
+            const info = document.createElement('div');
+            info.className = 'movie-info';
+
+            const titleEl = document.createElement('h3');
+            titleEl.textContent = movie.title || 'Untitled';
+
+            const meta = document.createElement('p');
+            const dirSpan = document.createElement('span');
+            dirSpan.textContent = movie.director || 'unknown director';
+            const yearSpan = document.createElement('span');
+            yearSpan.textContent = movie.year ? `📅 ${movie.year}` : '';
+            meta.appendChild(dirSpan);
+            meta.appendChild(yearSpan);
+
+            info.appendChild(titleEl);
+            info.appendChild(meta);
+
+            const delBtn = document.createElement('button');
+            delBtn.className = 'delete-btn';
+            delBtn.textContent = '✕ Delete';
+            delBtn.addEventListener('click', function(e) {
+              e.stopPropagation();
+              movies.splice(index, 1);
+              renderMovieList();
+              updateStatsAndMeta();
+            });
+
+            card.appendChild(info);
+            card.appendChild(delBtn);
+            movieListContainer.appendChild(card);
+          });
+        }
+
+        updateStatsAndMeta();
+        updateExtraStats();
+      }
+
+      // ---------- stats ----------
+      function updateStatsAndMeta() {
+        movieCountSpan.textContent = movies.length;
+        if (movies.length === 0) {
+          latestMovieSpan.textContent = '✨ no movies';
+          return;
+        }
+        const last = movies[movies.length - 1];
+        const displayTitle = last.title ? last.title : 'Untitled';
+        latestMovieSpan.textContent = `🎬 latest: ${displayTitle}`;
+      }
+
+      function updateExtraStats() {
+        if (movies.length === 0) {
+          extraStats.textContent = '';
+          return;
+        }
+        // use .map + .filter to show some extra info (learning)
+        const directors = movies.map(m => m.director).filter(d => d && d !== 'unknown');
+        const uniqueDirectors = [...new Set(directors)];
+        const years = movies.map(m => m.year).filter(y => y !== undefined && y !== null);
+        const avgYear = years.length ? Math.round(years.reduce((a,b) => a + b, 0) / years.length) : '—';
+        extraStats.textContent = `🎥 ${movies.length} movies · ${uniqueDirectors.length} director(s) · avg year ${avgYear}`;
+      }
+
+      // ---------- add movie (from form) ----------
+      function addMovie(e) {
+        e.preventDefault();
+
+        const title = titleInput.value.trim();
+        const director = directorInput.value.trim();
+        const yearRaw = yearInput.value.trim();
+
+        if (title === '') {
+          alert('Please enter a movie title.');
+          titleInput.focus();
+          return;
+        }
+
+        let year = undefined;
+        if (yearRaw !== '') {
+          const parsed = Number(yearRaw);
+          if (!isNaN(parsed) && parsed > 1800 && parsed < 2100) {
+            year = parsed;
+          } else {
+            alert('Year should be a number between 1800 and 2100 (or leave empty).');
+            yearInput.focus();
+            return;
+          }
+        }
+
+        const newMovie = {
+          title: title,
+          director: director || 'unknown',
+          year: year
+        };
+
+        movies.push(newMovie);
+
+        // clear inputs
+        titleInput.value = '';
+        directorInput.value = '';
+        yearInput.value = '';
+
+        renderMovieList();
+        titleInput.focus();
+      }
+
+      // ---------- sort by year ----------
+      function sortMoviesByYear() {
+        if (movies.length < 2) {
+          alert('Add at least 2 movies to sort.');
+          return;
+        }
+        movies.sort((a, b) => {
+          const yearA = a.year !== undefined ? a.year : Infinity;
+          const yearB = b.year !== undefined ? b.year : Infinity;
+          return yearA - yearB;
+        });
+        renderMovieList();
+        latestMovieSpan.textContent = '📅 sorted by year';
+      }
+
+      // ---------- clear all ----------
+      function clearAllMovies() {
+        if (movies.length === 0) return;
+        if (confirm('Remove all movies from the list?')) {
+          movies.splice(0, movies.length);
+          renderMovieList();
+        }
+      }
+
+      // ---------- sample init ----------
+      function initSampleMovies() {
+        const sample = [
+          { title: 'The Matrix', director: 'Lana & Lilly Wachowski', year: 1999 },
+          { title: 'Interstellar', director: 'Christopher Nolan', year: 2014 },
+          { title: 'Spirited Away', director: 'Hayao Miyazaki', year: 2001 },
+          { title: 'Parasite', director: 'Bong Joon-ho', year: 2019 },
+          { title: 'The Grand Budapest Hotel', director: 'Wes Anderson', year: 2014 }
+        ];
+        sample.forEach(m => movies.push(m));
+        renderMovieList();
+      }
+
+      // ---------- event binding ----------
+      form.addEventListener('submit', addMovie);
+
+      sortByYearBtn.addEventListener('click', sortMoviesByYear);
+      clearAllBtn.addEventListener('click', clearAllMovies);
+
+      // start with samples
+      initSampleMovies();
+
+      // extra console demo for learning
+      console.log('🎥 Movie objects:', movies);
+      console.log('📋 directors (map):', movies.map(m => m.director));
+      console.log('📽️ films after 2000 (filter):', movies.filter(m => m.year && m.year > 2000));
+
+      // expose for dev
+      window.__movies = movies;
+    })();
+  </script>
+</body>
+</html>

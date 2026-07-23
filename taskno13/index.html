@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie List Application</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+
+    <h1>🎬 My Movie Collection</h1>
+
+    <form id="movie-form">
+        <div class="form-group">
+            <label for="title">Movie Title</label>
+            <input type="text" id="title" required placeholder="e.g., hacker">
+        </div>
+        <div class="form-group">
+            <label for="director">Director</label>
+            <input type="text" id="director" required placeholder="e.g., Christopher Nolan">
+        </div>
+        <div class="form-group">
+            <label for="year">Release Year</label>
+            <input type="number" id="year" required min="1888" max="2030" placeholder="e.g., 2024">
+        </div>
+        <button type="submit">Add Movie</button>
+    </form>
+
+    <div id="movie-list"></div>
+    <div id="movie-stats" class="stats"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

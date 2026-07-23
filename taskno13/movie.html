@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎬 Movie List · advanced JS</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
+    body {
+      background: linear-gradient(145deg, #0b1a2e 0%, #1b2f44 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+      padding: 1.5rem;
+      margin: 0;
+    }
+    .card {
+      max-width: 820px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 2.8rem;
+      padding: 2rem 2rem 2.5rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.03);
+      transition: 0.25s;
+    }
+    h1 {
+      font-size: 2.1rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: #f2e9e1;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid rgba(255, 215, 150, 0.25);
+      padding-bottom: 0.75rem;
+    }
+    h1 span {
+      background: #f6b17e;
+      color: #0f1f2b;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.1rem 0.9rem;
+      border-radius: 40px;
+      margin-left: 0.5rem;
+    }
+    .input-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem 0.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1.3rem 1.2rem;
+      border-radius: 2.2rem;
+      backdrop-filter: blur(4px);
+      background: rgba(20, 40, 55, 0.5);
+      margin-bottom: 2.2rem;
+      border: 1px solid rgba(255, 215, 150, 0.15);
+    }
+    .input-group input {
+      flex: 1 0 140px;
+      background: rgba(10, 22, 34, 0.7);
+      border: 1px solid #3d5a6d;
+      border-radius: 40px;
+      padding: 0.7rem 1.2rem;
+      font-size: 0.95rem;
+      color: #f0ece6;
+      outline: none;
+      transition: 0.2s;
+      min-width: 120px;
+    }
+    .input-group input::placeholder {
+      color: #8faec9;
+      font-weight: 300;
+      letter-spacing: 0.2px;
+    }
+    .input-group input:focus {
+      border-color: #f6b17e;
+      box-shadow: 0 0 0 3px rgba(246, 177, 126, 0.2);
+      background: #0f2537;
+    }
+    .input-group button {
+      background: #f6b17e;
+      border: none;
+      border-radius: 40px;
+      padding: 0.7rem 1.7rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #0b1a24;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: 0.15s;
+      box-shadow: 0 6px 0 #b47348;
+      transform: translateY(0);
+      letter-spacing: 0.3px;
+      border: 1px solid #ffdbb8;
+    }
+    .input-group button:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #b47348;
+    }
+    .input-group button:hover {
+      background: #ffc492;
+      box-shadow: 0 6px 0 #b87d52;
+    }
+    .stats-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #b6d0e0;
+      font-size: 0.9rem;
+      padding: 0 0.2rem 0.8rem 0.2rem;
+      border-bottom: 1px dashed #3b5a6e;
+      margin-bottom: 1.2rem;
+    }
+    .stats-bar strong {
+      color: #f2dac0;
+      font-weight: 500;
+    }
+    .movie-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-height: 380px;
+      overflow-y: auto;
+      padding-right: 0.3rem;
+      margin-bottom: 0.8rem;
+      scroll-behavior: smooth;
+    }
+    .movie-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .movie-list::-webkit-scrollbar-track {
+      background: #1d3345;
+      border-radius: 12px;
+    }
+    .movie-list::-webkit-scrollbar-thumb {
+      background: #f6b17e;
+      border-radius: 12px;
+    }
+    .movie-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(30, 55, 73, 0.5);
+      backdrop-filter: blur(4px);
+      padding: 0.6rem 1.2rem 0.6rem 1.6rem;
+      border-radius: 50px;
+      border-left: 5px solid #f6b17e;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: 0.1s ease;
+      border: 1px solid rgba(255, 215, 150, 0.08);
+    }
+    .movie-item:hover {
+      background: rgba(45, 75, 95, 0.5);
+      border-left-width: 8px;
+    }
+    .movie-info {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.3rem 1rem;
+      color: #e9e1d7;
+    }
+    .movie-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #f6e8da;
+    }
+    .movie-director {
+      color: #b2cddf;
+      font-size: 0.85rem;
+      background: #1b3547;
+      padding: 0.1rem 0.9rem;
+      border-radius: 40px;
+    }
+    .movie-year {
+      color: #c5b6a4;
+      font-size: 0.8rem;
+      background: #273f52;
+      padding: 0.1rem 0.8rem;
+      border-radius: 20px;
+    }
+    .remove-btn {
+      background: transparent;
+      border: none;
+      color: #e0b7a2;
+      font-size: 1.3rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.12s;
+      line-height: 1;
+      font-weight: 300;
+      border: 1px solid transparent;
+    }
+    .remove-btn:hover {
+      background: #a0423a;
+      color: white;
+      border-color: #d97a6a;
+      transform: scale(0.96);
+    }
+    .empty-message {
+      color: #8aaec9;
+      text-align: center;
+      padding: 2rem 0;
+      font-style: italic;
+      letter-spacing: 0.5px;
+      background: rgba(0,0,0,0.1);
+      border-radius: 60px;
+      border: 1px dashed #3f6077;
+    }
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+    .footer-actions button {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid #3a5a70;
+      color: #d3dce3;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.15s;
+      backdrop-filter: blur(2px);
+    }
+    .footer-actions button:hover {
+      background: #395b70;
+      border-color: #f6b17e;
+      color: #f2e3d6;
+    }
+    .movie-count-badge {
+      background: #1b3345;
+      padding: 0.15rem 0.9rem;
+      border-radius: 30px;
+      color: #eedbcb;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="app">
+  <h1>
+    🎞️ Movie Vault
+    <span>JS</span>
+  </h1>
+
+  <!-- input section -->
+  <div class="input-group">
+    <input type="text" id="titleInput" placeholder="Title" value="Inception">
+    <input type="text" id="directorInput" placeholder="Director" value="Nolan">
+    <input type="number" id="yearInput" placeholder="Year" value="2010" min="1888" max="2030">
+    <button id="addBtn">➕ Add movie</button>
+  </div>
+
+  <!-- stats -->
+  <div class="stats-bar">
+    <span>🎯 <strong id="movieCount">0</strong> movies</span>
+    <span class="movie-count-badge" id="latestMovie">✨ ready</span>
+  </div>
+
+  <!-- movie list container -->
+  <div class="movie-list" id="movieListContainer">
+    <!-- dynamic items will be rendered here -->
+    <div class="empty-message">🎬 No movies yet — add your favourites</div>
+  </div>
+
+  <!-- footer utilities -->
+  <div class="footer-actions">
+    <button id="sortByYearBtn">📅 Sort by year</button>
+    <button id="clearAllBtn">🗑️ Clear all</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    "use strict";
+
+    // ---------- state ----------
+    // each movie: { title, director, year }
+    let movies = [];
+
+    // DOM references
+    const titleInput = document.getElementById('titleInput');
+    const directorInput = document.getElementById('directorInput');
+    const yearInput = document.getElementById('yearInput');
+    const addBtn = document.getElementById('addBtn');
+    const movieListContainer = document.getElementById('movieListContainer');
+    const movieCountSpan = document.getElementById('movieCount');
+    const latestMovieSpan = document.getElementById('latestMovie');
+    const sortByYearBtn = document.getElementById('sortByYearBtn');
+    const clearAllBtn = document.getElementById('clearAllBtn');
+
+    // ---------- helper render ----------
+    function renderMovieList() {
+      // clear container
+      movieListContainer.innerHTML = '';
+
+      // 1) use .forEach to display each movie object
+      if (movies.length === 0) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'empty-message';
+        emptyDiv.textContent = '🎬 No movies yet — add your favourites';
+        movieListContainer.appendChild(emptyDiv);
+      } else {
+        movies.forEach((movie, index) => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'movie-item';
+
+          // info part
+          const infoDiv = document.createElement('div');
+          infoDiv.className = 'movie-info';
+
+          const titleSpan = document.createElement('span');
+          titleSpan.className = 'movie-title';
+          titleSpan.textContent = movie.title || 'Untitled';
+
+          const directorSpan = document.createElement('span');
+          directorSpan.className = 'movie-director';
+          directorSpan.textContent = movie.director || 'unknown director';
+
+          const yearSpan = document.createElement('span');
+          yearSpan.className = 'movie-year';
+          yearSpan.textContent = movie.year ? `📅 ${movie.year}` : '';
+
+          infoDiv.appendChild(titleSpan);
+          infoDiv.appendChild(directorSpan);
+          infoDiv.appendChild(yearSpan);
+
+          // remove button
+          const removeBtn = document.createElement('button');
+          removeBtn.className = 'remove-btn';
+          removeBtn.setAttribute('aria-label', 'Remove movie');
+          removeBtn.innerHTML = '✕';
+          // use index to remove (array method splice)
+          removeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // .splice is an array method
+            movies.splice(index, 1);
+            // update UI
+            renderMovieList();
+            updateStatsAndMeta();
+          });
+
+          itemDiv.appendChild(infoDiv);
+          itemDiv.appendChild(removeBtn);
+          movieListContainer.appendChild(itemDiv);
+        });
+      }
+
+      // update count & meta
+      updateStatsAndMeta();
+    }
+
+    // ---------- update stats (count, latest) ----------
+    function updateStatsAndMeta() {
+      movieCountSpan.textContent = movies.length;
+
+      if (movies.length === 0) {
+        latestMovieSpan.textContent = '✨ no movies';
+        return;
+      }
+
+      // get last movie (latest added)
+      const last = movies[movies.length - 1];
+      const displayTitle = last.title ? last.title : 'Untitled';
+      latestMovieSpan.textContent = `🎬 latest: ${displayTitle}`;
+    }
+
+    // ---------- add movie ----------
+    function addMovie() {
+      const title = titleInput.value.trim();
+      const director = directorInput.value.trim();
+      const yearRaw = yearInput.value.trim();
+
+      // basic validation
+      if (title === '') {
+        alert('Please enter a movie title.');
+        titleInput.focus();
+        return;
+      }
+
+      let year = undefined;
+      if (yearRaw !== '') {
+        const parsed = Number(yearRaw);
+        if (!isNaN(parsed) && parsed > 1800 && parsed < 2100) {
+          year = parsed;
+        } else {
+          alert('Year should be a valid number between 1800 and 2100 (or leave empty).');
+          yearInput.focus();
+          return;
+        }
+      }
+
+      // construct movie object
+      const newMovie = {
+        title: title,
+        director: director || 'unknown',
+        year: year
+      };
+
+      // push to array (array method)
+      movies.push(newMovie);
+
+      // clear inputs (keep year as placeholder)
+      titleInput.value = '';
+      directorInput.value = '';
+      yearInput.value = '';
+
+      // re-render
+      renderMovieList();
+
+      // focus title for next entry
+      titleInput.focus();
+    }
+
+    // ---------- sort by year (using array.sort) ----------
+    function sortMoviesByYear() {
+      if (movies.length < 2) {
+        // no need to sort, but we give feedback
+        alert('Add at least 2 movies to sort.');
+        return;
+      }
+
+      // use .sort() with a compare function
+      movies.sort((a, b) => {
+        // if year is missing, treat as Infinity (put at end)
+        const yearA = a.year !== undefined ? a.year : Infinity;
+        const yearB = b.year !== undefined ? b.year : Infinity;
+        return yearA - yearB;
+      });
+
+      renderMovieList();
+      // small feedback
+      latestMovieSpan.textContent = '📅 sorted by year';
+    }
+
+    // ---------- clear all (using length=0 or splice) ----------
+    function clearAllMovies() {
+      if (movies.length === 0) return;
+      if (confirm('Remove all movies from the list?')) {
+        // use .splice to empty array (array method)
+        movies.splice(0, movies.length);
+        renderMovieList();
+      }
+    }
+
+    // ---------- initialization with some sample movies (using objects) ----------
+    function initSampleMovies() {
+      // sample movie objects
+      const sampleMovies = [
+        { title: 'The Matrix', director: 'Lana Wachowski, Lilly Wachowski', year: 1999 },
+        { title: 'Interstellar', director: 'Christopher Nolan', year: 2014 },
+        { title: 'Spirited Away', director: 'Hayao Miyazaki', year: 2001 },
+        { title: 'Parasite', director: 'Bong Joon-ho', year: 2019 },
+        { title: 'The Grand Budapest Hotel', director: 'Wes Anderson', year: 2014 }
+      ];
+      // use .forEach to push each sample
+      sampleMovies.forEach(m => movies.push(m));
+      renderMovieList();
+    }
+
+    // ---------- event listeners ----------
+    addBtn.addEventListener('click', addMovie);
+
+    // enter key on any input triggers add
+    [titleInput, directorInput, yearInput].forEach(input => {
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          addMovie();
+        }
+      });
+    });
+
+    sortByYearBtn.addEventListener('click', sortMoviesByYear);
+
+    clearAllBtn.addEventListener('click', clearAllMovies);
+
+    // start with sample movies (demonstrate objects & arrays)
+    initSampleMovies();
+
+    // extra: demonstrate .map and .filter in console (just for learning)
+    console.log('🎥 Movie list (objects):', movies);
+    console.log('🔍 directors (using .map):', movies.map(m => m.director));
+    console.log('📽️ movies after 2000 (using .filter):', movies.filter(m => m.year && m.year > 2000));
+
+    // attach to window for dev tools
+    window.__movies = movies;
+  })();
+</script>
+</body>
+</html>
